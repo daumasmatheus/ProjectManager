@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManager.Authentication", "src\ProjectManager.Authentication\ProjectManager.Authentication.csproj", "{A9C81288-D9D8-4B8E-9DC1-F342E72FF80C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.Authentication", "src\ProjectManager.Authentication\ProjectManager.Authentication.csproj", "{A9C81288-D9D8-4B8E-9DC1-F342E72FF80C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManager.Gateway", "src\ProjectManager.Gateway\ProjectManager.Gateway.csproj", "{5C1AA671-6039-4AA4-AB40-D27E8DD46512}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A9C81288-D9D8-4B8E-9DC1-F342E72FF80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9C81288-D9D8-4B8E-9DC1-F342E72FF80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9C81288-D9D8-4B8E-9DC1-F342E72FF80C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C1AA671-6039-4AA4-AB40-D27E8DD46512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C1AA671-6039-4AA4-AB40-D27E8DD46512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C1AA671-6039-4AA4-AB40-D27E8DD46512}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C1AA671-6039-4AA4-AB40-D27E8DD46512}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
