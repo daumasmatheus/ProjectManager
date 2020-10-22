@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -24,10 +20,11 @@ namespace ProjectManager.Gateway
                             .AddJsonFile("appsettings.json", true, true)
                             .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
                             .AddJsonFile($"configuration.{hostingContext.HostingEnvironment.EnvironmentName}.json")
-                              .AddEnvironmentVariables();
-                }).ConfigureWebHostDefaults(webbuilder =>
-                {
-                    webbuilder.UseStartup<Startup>();
-                });
+                            .AddEnvironmentVariables();
+                }).ConfigureWebHostDefaults(webbuilder => webbuilder.UseStartup<Startup>())
+                  .ConfigureLogging(logging => {
+                      logging.ClearProviders();
+                      logging.AddConsole();
+                  });
     }
 }

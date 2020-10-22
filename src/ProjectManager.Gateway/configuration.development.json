@@ -1,16 +1,19 @@
 {
-  "ReRoutes": [
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  },
+  "Routes": [
     {
-      "DownstreamPathTemplate": "/auth/{url}",
+      "DownstreamPathTemplate": "/api/authentication/{path}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 64549
+          "Port": 44010
         }
       ],
-      "UpstreamPathTemplate": "/api/authentication/{path}",
-      "UpstreamHttpMethod": [ "GET", "POST" ]
+      "UpstreamPathTemplate": "/auth/{path}",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 }
