@@ -23,7 +23,9 @@ namespace ProjectManager.Person
 
             services.AddJwtConfiguration(Configuration);
 
-            services.AddPolicyConfiguration();            
+            services.AddPolicyConfiguration();
+
+            services.AddSwaggerConfiguration();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -36,6 +38,8 @@ namespace ProjectManager.Person
             app.UseRouting();
 
             app.UseAuthConfiguration();
+
+            app.UseSwaggerConfiguration();
 
             app.UseEndpoints(endpoints =>
             {
