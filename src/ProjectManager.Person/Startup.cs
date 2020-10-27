@@ -1,16 +1,10 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using ProjectManager.Core.Configuration;
 using ProjectManager.Person.Configuration;
-using System.Net.NetworkInformation;
-using System.Text;
 
 namespace ProjectManager.Person
 {
