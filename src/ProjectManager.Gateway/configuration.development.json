@@ -3,6 +3,7 @@
     "BaseUrl": "http://localhost:5000"
   },
   "Routes": [
+    //AUTHENTICATION
     {
       "DownstreamPathTemplate": "/api/authentication/{path}",
       "DownstreamScheme": "http",
@@ -14,6 +15,19 @@
       ],
       "UpstreamPathTemplate": "/auth/{path}",
       "UpstreamHttpMethod": [ "POST" ]
+    },
+    //PERSON
+    {
+      "DownstreamPathTemplate": "/api/person/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44020
+        }
+      ],
+      "UpstreamPathTemplate": "/person/{path}",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
     }
   ]
 }
