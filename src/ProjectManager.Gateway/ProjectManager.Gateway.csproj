@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MMLib.SwaggerForOcelot" Version="2.6.0" />
     <PackageReference Include="Ocelot" Version="16.0.1" />
   </ItemGroup>
 
