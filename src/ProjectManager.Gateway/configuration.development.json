@@ -30,6 +30,20 @@
       "UpstreamPathTemplate": "/person/{path}",
       "UpstreamHttpMethod": [ "GET", "POST" ],
       "SwaggerKey": "Person"
+    },
+    //TEAM
+    {
+      "DownstreamPathTemplate": "/api/team/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44030
+        }
+      ],
+      "UpstreamPathTemplate": "/team/{path}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "SwaggerKey": "Team"
     }
   ],
   "SwaggerEndpoints": [
