@@ -36,7 +36,7 @@ export class LogInComponent implements OnInit {
 
       this.accountService.login(this.user)
           .subscribe(
-            response => {this.proccessResult(response.value)},
+            response => {this.proccessResult(response)},
             error => {this.proccessError(error)}
       );
     }
