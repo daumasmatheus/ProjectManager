@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
   }
 
   proccessResult = (response: any) => {
-    this.registerForm.reset;
+    this.registerForm.reset();
     
     this.accountService.localStorage.saveUserData(response);
 
@@ -63,8 +63,9 @@ export class RegisterComponent implements OnInit {
   }
 
   proccessError = (fail: any) => {
-    console.error(fail);
-    this.openSnackBar('Falha ao registrar o novo usuário');
+    fail.error.errors.Messages.forEach(errorMessage => {
+      this.openSnackBar(errorMessage);
+    });    
   }
 
   openSnackBar = (message: string) => {
@@ -73,13 +74,5 @@ export class RegisterComponent implements OnInit {
       horizontalPosition: 'start',
       verticalPosition: 'top'
     });
-  }
-
-  showSnackbar (){
-    this.snackBar.open("Hallo!!", "X", {
-      horizontalPosition: 'start',
-      verticalPosition: 'top',
-      panelClass: ['snack-info']
-    })
-  }
+  }  
 }

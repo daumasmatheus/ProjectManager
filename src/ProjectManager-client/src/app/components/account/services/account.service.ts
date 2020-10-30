@@ -11,19 +11,17 @@ import { BaseService } from 'src/app/services/base.service';
 export class AccountService extends BaseService{
     constructor(private httpClient: HttpClient) { super(); }
     
-    registerUser(user: User): Observable<User> {
+    registerUser(user: User): Observable<any> {
         return this.httpClient
                     .post(environment.accountApiUrl + 'register', user, this.GetJsonHeader())
                     .pipe(
-                        map(this.ExtractData),
                         catchError(this.ServiceError));
     }
 
-    login(user: User): Observable<User> {
+    login(user: User): Observable<any> {
         return this.httpClient
-                    .post(environment.accountApiUrl + 'login', user, this.GetJsonHeader())
-                    .pipe(
-                        map(this.ExtractData),
-                        catchError(this.ServiceError));
+                        .post(environment.accountApiUrl + 'login', user, this.GetJsonHeader())
+                        .pipe(
+                            catchError(this.ServiceError));
     }
 }

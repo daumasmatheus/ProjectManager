@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 
 import { LocalStorageUtils } from '../helpers/localstorage';
@@ -24,7 +24,7 @@ export abstract class BaseService {
     }
 
     protected ExtractData(response: any){
-        return response.data || {};
+        return response.value || {};
     }
 
     protected ServiceError(response: Response | any){
