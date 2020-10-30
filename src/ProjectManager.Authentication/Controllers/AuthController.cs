@@ -28,7 +28,7 @@ namespace ProjectManager.Authentication.Controllers
         /// <param name="userRegister">Dados do usuário para registro no banco de dados</param>
         /// <returns>Dados de autenticação e autorização (jwt token e claims) do usuário</returns>
         [HttpPost("register")]
-        public async Task<ActionResult> Register(UserRegister userRegister)
+        public async Task<ActionResult> Register([FromBody]UserRegister userRegister)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 

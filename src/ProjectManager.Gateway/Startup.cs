@@ -23,6 +23,15 @@ namespace ProjectManager.Gateway
             services.AddOcelot(Configuration);
             services.AddSwaggerForOcelot(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddCors(opts =>
+            {
+                opts.AddPolicy("total", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +43,8 @@ namespace ProjectManager.Gateway
                 app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
+
+            app.UseCors("total");
 
             app.UseSwaggerForOcelotUI(opts =>
             {
