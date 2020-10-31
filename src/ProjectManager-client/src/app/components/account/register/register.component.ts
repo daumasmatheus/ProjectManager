@@ -45,6 +45,8 @@ export class RegisterComponent implements OnInit {
 
   register = () => {
     if (this.registerForm.dirty && this.registerForm.valid) {
+      this.registerForm.disable();
+
       this.user = Object.assign({}, this.user, this.registerForm.value);
 
       this.accountService.registerUser(this.user).subscribe(
@@ -56,7 +58,8 @@ export class RegisterComponent implements OnInit {
 
   proccessResult = (response: any) => {
     this.registerForm.reset();
-    
+    this.registerForm.enable();
+
     this.accountService.localStorage.saveUserData(response);
 
     this.openSnackBar('Usuário registrado com sucesso');
