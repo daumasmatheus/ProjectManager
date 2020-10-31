@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar} from "@angular/material/snack-bar";
+import { Router } from '@angular/router';
 
 
 import { User } from '../models/user.model';
@@ -14,10 +15,12 @@ import { AccountService } from '../services/account.service';
 export class LogInComponent implements OnInit {
 
   constructor(private accountService: AccountService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private router: Router) { }
 
   loginForm: FormGroup;
   user: User;
+  loginIn: boolean = false;
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -43,11 +46,16 @@ export class LogInComponent implements OnInit {
   }
 
   proccessResult = (response: any) => {
-    this.loginForm.reset();
+    this.loginForm.disable();
+    this.loginIn = true;
     
     this.accountService.localStorage.saveUserData(response);
 
-    this.openSnackBar('Usuário logado com sucesso');
+    this.openSnackBar('Usuário logado com sucesso. Redirecionando...');
+
+    // setTimeout(() => {
+    //   this.router.navigate(['/dashboard'])
+    // }, 3000);
   }
 
   proccessError = (fail: any) => {
