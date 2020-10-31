@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar} from "@angular/material/snack-bar";
 import { Router } from '@angular/router';
 
-
 import { User } from '../models/user.model';
 import { AccountService } from '../services/account.service';
 
@@ -53,9 +52,9 @@ export class LogInComponent implements OnInit {
 
     this.openSnackBar('Usuário logado com sucesso. Redirecionando...');
 
-    // setTimeout(() => {
-    //   this.router.navigate(['/dashboard'])
-    // }, 3000);
+    setTimeout(() => {
+      this.router.navigate(['/dashboard'])
+    }, 3000);
   }
 
   proccessError = (fail: any) => {
