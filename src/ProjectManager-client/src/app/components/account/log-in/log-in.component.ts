@@ -1,7 +1,10 @@
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar} from "@angular/material/snack-bar";
 import { Router } from '@angular/router';
+import { MessageType } from 'src/app/helpers/message-type.enum';
+import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 
 import { User } from '../models/user.model';
 import { AccountService } from '../services/account.service';
@@ -15,7 +18,8 @@ export class LogInComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private snackBar: MatSnackBar,
-              private router: Router) { }
+              private router: Router,
+              private snackHelper: SnackBarHelper) { }
 
   loginForm: FormGroup;
   user: User;
@@ -50,8 +54,8 @@ export class LogInComponent implements OnInit {
     
     this.accountService.localStorage.saveUserData(response);
 
-    this.openSnackBar('Usuário logado com sucesso. Redirecionando...');
-
+    this.snackHelper.showSnackbar('Logado com sucesso!', MessageType.OkMessage);
+    
     setTimeout(() => {
       this.router.navigate(['/dashboard'])
     }, 3000);
@@ -59,15 +63,7 @@ export class LogInComponent implements OnInit {
 
   proccessError = (fail: any) => {
     fail.error.errors.Messages.forEach(errorMessage => {
-      this.openSnackBar(errorMessage);
+      this.snackHelper.showSnackbar(errorMessage, MessageType.ErrorMessage);
     });    
-  }
-
-  openSnackBar = (message: string) => {
-    this.snackBar.open(message, 'X', {
-      duration: 15000,
-      horizontalPosition: 'start',
-      verticalPosition: 'top'
-    });
-  }
+  }  
 }

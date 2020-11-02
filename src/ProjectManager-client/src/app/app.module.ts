@@ -9,6 +9,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccountService } from './components/account/services/account.service';
+import { SnackBarHelper } from './helpers/snack-bar.helper';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { AccountService } from './components/account/services/account.service';
     AngularMaterialModule,
     FlexLayoutModule    
   ],
-  providers: [],
+  providers: [
+    SnackBarHelper
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

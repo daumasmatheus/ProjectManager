@@ -1,9 +1,9 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 
+import { MessageType } from 'src/app/helpers/message-type.enum';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
+import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 import { User } from '../models/user.model';
 import { AccountService } from '../services/account.service';
 
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private accountService: AccountService,
-              private snackBar: MatSnackBar ) { }
+              private snackHelper: SnackBarHelper ) { }
 
   registerForm: FormGroup;
   user: User;
@@ -62,20 +62,12 @@ export class RegisterComponent implements OnInit {
 
     this.accountService.localStorage.saveUserData(response);
 
-    this.openSnackBar('Usuário registrado com sucesso');
+    this.snackHelper.showSnackbar('Usuário registrado com sucesso!', MessageType.OkMessage);
   }
 
   proccessError = (fail: any) => {
     fail.error.errors.Messages.forEach(errorMessage => {
-      this.openSnackBar(errorMessage);
+      this.snackHelper.showSnackbar(errorMessage, MessageType.ErrorMessage);
     });    
   }
-
-  openSnackBar = (message: string) => {
-    this.snackBar.open(message, 'X', {
-      duration: 15000,
-      horizontalPosition: 'start',
-      verticalPosition: 'top'
-    });
-  }  
 }
