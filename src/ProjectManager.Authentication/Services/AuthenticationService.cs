@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace ProjectManager.Authentication.Services
 {
-    public class AuthenticationService
+    public class AuthenticationService : IAuthenticationService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly AppSettings _appSettings;
 
-        public AuthenticationService(UserManager<IdentityUser> userManager,
+        public AuthenticationService(UserManager<ApplicationUser> userManager,
                                      IOptions<AppSettings> appSettings)
         {
             _userManager = userManager;
@@ -36,7 +36,7 @@ namespace ProjectManager.Authentication.Services
             return GetTokenResponse(encodedToken, user, claims);
         }
 
-        private UserLoginTokenResponse GetTokenResponse(string encodedToken, IdentityUser user, IList<Claim> claims)
+        private UserLoginTokenResponse GetTokenResponse(string encodedToken, ApplicationUser user, IList<Claim> claims)
         {
             return new UserLoginTokenResponse
             {
@@ -67,7 +67,7 @@ namespace ProjectManager.Authentication.Services
             return tokenHandler.WriteToken(token);
         }
 
-        private async Task<ClaimsIdentity> GetUserClaims(ICollection<Claim> claims, IdentityUser user)
+        private async Task<ClaimsIdentity> GetUserClaims(ICollection<Claim> claims, ApplicationUser user)
         {
             var userRoles = await _userManager.GetRolesAsync(user);
 
