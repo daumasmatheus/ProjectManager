@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ProjectManager.Authentication.Extensions;
 using ProjectManager.Authentication.Services;
 using ProjectManager.Authentication.ViewModels;
 using System.Threading.Tasks;
@@ -9,13 +10,13 @@ namespace ProjectManager.Authentication.Controllers
     [Route("api/authentication")]
     public class AuthController : BaseController
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly AuthenticationService _authenticationService;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IAuthenticationService _authenticationService;
 
-        public AuthController(SignInManager<IdentityUser> signInManager,
-                              UserManager<IdentityUser> userManager,
-                              AuthenticationService authenticationService)
+        public AuthController(SignInManager<ApplicationUser> signInManager,
+                              UserManager<ApplicationUser> userManager,
+                              IAuthenticationService authenticationService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -32,11 +33,12 @@ namespace ProjectManager.Authentication.Controllers
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
-            var user = new IdentityUser
+            var user = new ApplicationUser
             {
                 UserName = userRegister.Email,
                 Email = userRegister.Email,
-                EmailConfirmed = true
+                EmailConfirmed = true,
+                IsPersonalDataFilled = false
             };
 
             var result = await _userManager.CreateAsync(user, userRegister.Password);

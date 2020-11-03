@@ -12,7 +12,7 @@ namespace ProjectManager.Authentication.Configuration
         {
             services.AddControllers();
 
-            services.AddScoped<AuthenticationService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             return services;
         }

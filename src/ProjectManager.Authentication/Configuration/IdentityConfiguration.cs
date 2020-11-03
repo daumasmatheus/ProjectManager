@@ -20,7 +20,7 @@ namespace ProjectManager.Authentication.Configuration
                 opts.UseSqlServer(config.GetConnectionString("DefaultConnection"))
             );
 
-            services.AddDefaultIdentity<IdentityUser>(opts => 
+            services.AddDefaultIdentity<ApplicationUser>(opts => 
                 {
                     opts.Password.RequiredLength = 8;
                     opts.Password.RequireLowercase = false;

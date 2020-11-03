@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ProjectManager.Authentication.Extensions;
 
 namespace ProjectManager.Authentication.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> opts) : base(opts) { }
 
@@ -12,7 +13,7 @@ namespace ProjectManager.Authentication.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityUser>(e => e.ToTable(name: "User"));
+            builder.Entity<ApplicationUser>(e => e.ToTable(name: "User"));
             builder.Entity<IdentityRole>(e => e.ToTable(name: "Role"));
             builder.Entity<IdentityUserRole<string>>(e => e.ToTable(name: "UserRole"));
             builder.Entity<IdentityUserClaim<string>>(e => e.ToTable(name: "UserClaim"));
