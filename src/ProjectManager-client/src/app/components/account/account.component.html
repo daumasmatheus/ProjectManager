@@ -1,10 +1,18 @@
-<mat-toolbar color="primary" class="app-header">
-    <span>Project Manager</span>
-    <span></span>
-    <span class="nav-tool-items">
-        <a mat-button routerLink="login" routerLinkActive="mat-raised-button" class="mat-button-spacing">Login</a>
-        <a mat-button routerLink="register" routerLinkActive="mat-raised-button" class="mat-button-spacing">Nova Conta</a>
-    </span>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+<div fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="center" fxFill class="auth-container">
+    <div class="form-container">
+        <div class="text-center">
+            <img src="../../../assets/logos/cover_small.png" class="img-fluid" alt="Logotipo Project Manager">
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="form-links">
+            <div fxFlex>
+                <a mat-button routerLink="login" routerLinkActive="mat-raised-button" class="mat-button-spacing">Login</a>
+            </div>
+            <div fxFlex>
+                <a mat-button routerLink="register" routerLinkActive="mat-raised-button" class="mat-button-spacing">Nova Conta</a>
+            </div>
+        </div>
+        <div class="form-box">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

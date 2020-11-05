@@ -1,33 +1,21 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card>
-        <mat-card-header>
-            <div mat-card-avatar class=""></div>
-            <mat-card-title>Nova Conta</mat-card-title>
-        </mat-card-header>        
-        
-        <form novalidate (ngSubmit)="register()" class="example-form" [formGroup]="registerForm">
-            <mat-card-content>
-                <mat-form-field class="example-full-width">
-                    <input matInput formControlName="email" placeholder="Email">
-                    <mat-error *ngIf="hasError('email', 'required')">Informe o Email</mat-error>
-                    <mat-error *ngIf="hasError('email', 'pattern')">Informe um endereço de email com formato válido</mat-error>
-                </mat-form-field>
+<form novalidate (ngSubmit)="register()" [formGroup]="registerForm" fxLayout="column" class="auth-form">
+    <mat-form-field>
+        <input matInput formControlName="email" placeholder="Email">
+        <mat-error *ngIf="hasError('email', 'required')">Informe o Email</mat-error>
+        <mat-error *ngIf="hasError('email', 'pattern')">Informe um endereço de email com formato válido</mat-error>
+    </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                    <input matInput formControlName="password" placeholder="Password" type="password">
-                    <mat-error *ngIf="hasError('password', 'required')">Informe a senha</mat-error>
-                    <mat-error *ngIf="hasError('password', 'minLength')">A senha deve ter no minimo 8 caracteres</mat-error>
-                </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="password" placeholder="Senha" type="password">
+        <mat-error *ngIf="hasError('password', 'required')">Informe a senha</mat-error>
+        <mat-error *ngIf="hasError('password', 'minLength')">A senha deve ter no minimo 8 caracteres</mat-error>
+    </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                    <input matInput formControlName="passwordConfirmation" placeholder="Password Confirmation" type="password">
-                    <mat-error *ngIf="hasError('passwordConfirmation', 'required')">Informe a confirmação da senha</mat-error>
-                    <mat-error *ngIf="hasError('passwordConfirmation', 'mustMatch')">As senhas não conferem</mat-error>
-                </mat-form-field>
-            </mat-card-content>
+    <mat-form-field>
+        <input matInput formControlName="passwordConfirmation" placeholder="Confirme a Senha" type="password">
+        <mat-error *ngIf="hasError('passwordConfirmation', 'required')">Informe a confirmação da senha</mat-error>
+        <mat-error *ngIf="hasError('passwordConfirmation', 'mustMatch')">As senhas não conferem</mat-error>
+    </mat-form-field>
 
-            <button mat-stroked-button color="accent" class="btn-block" [disabled]="!registerForm.valid" type="submit">Register</button>
-        </form>        
-    </mat-card>
-</div>
-
+    <button mat-raised-button [disabled]="!registerForm.valid" type="submit">Register</button>
+</form>  
