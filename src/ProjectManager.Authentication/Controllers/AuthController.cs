@@ -35,10 +35,11 @@ namespace ProjectManager.Authentication.Controllers
 
             var user = new ApplicationUser
             {
+                FirstName = userRegister.FirstName,
+                LastName = userRegister.LastName,
                 UserName = userRegister.Email,
                 Email = userRegister.Email,
-                EmailConfirmed = true,
-                IsPersonalDataFilled = false
+                EmailConfirmed = true                
             };
 
             var result = await _userManager.CreateAsync(user, userRegister.Password);

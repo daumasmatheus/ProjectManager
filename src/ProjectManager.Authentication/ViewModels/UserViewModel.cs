@@ -7,6 +7,14 @@ namespace ProjectManager.Authentication.ViewModels
     public class UserRegister
     {
         [Required(ErrorMessage = "Campo {0} obrigatório")]
+        [StringLength(255, MinimumLength = 2, ErrorMessage = "Entre com pelo menos 2 caracteres")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Campo {0} obrigatório")]
+        [StringLength(255, MinimumLength = 2, ErrorMessage = "Entre com pelo menos 2 caracteres")]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Campo {0} obrigatório")]
         [EmailAddress(ErrorMessage = "Campo {0} com formato inválido")]
         public string Email { get; set; }
 

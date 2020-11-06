@@ -10,7 +10,7 @@ using ProjectManager.Authentication.Data;
 namespace ProjectManager.Authentication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201102230742_Initial")]
+    [Migration("20201106211439_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -175,8 +175,11 @@ namespace ProjectManager.Authentication.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsPersonalDataFilled")
-                        .HasColumnType("bit");
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
