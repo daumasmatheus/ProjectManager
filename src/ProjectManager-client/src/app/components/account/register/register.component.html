@@ -1,5 +1,19 @@
 <form novalidate (ngSubmit)="register()" [formGroup]="registerForm" fxLayout="column" class="auth-form">
     <mat-form-field>
+        <input matInput formControlName="firstName" placeholder="Nome">
+        <mat-error *ngIf="hasError('firstName', 'required')">Informe o Nome</mat-error>
+        <mat-error *ngIf="hasError('firstName', 'minLength')">Mínimo de 2 caracteres</mat-error>
+        <mat-error *ngIf="hasError('firstName', 'maxLength')">Máximo de 255 caracteres</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="lastName" placeholder="Sobrenome">
+        <mat-error *ngIf="hasError('lastName', 'required')">Informe o Sobrenome</mat-error>
+        <mat-error *ngIf="hasError('lastName', 'minLength')">Mínimo de 2 caracteres</mat-error>
+        <mat-error *ngIf="hasError('lastName', 'maxLength')">Máximo de 255 caracteres</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
         <input matInput formControlName="email" placeholder="Email">
         <mat-error *ngIf="hasError('email', 'required')">Informe o Email</mat-error>
         <mat-error *ngIf="hasError('email', 'pattern')">Informe um endereço de email com formato válido</mat-error>

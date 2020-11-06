@@ -28,7 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ],
     exports: [],
     providers: [
-        AccountService
+        AccountService        
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

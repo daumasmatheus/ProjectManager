@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { MessageType } from 'src/app/helpers/message-type.enum';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
@@ -16,13 +17,24 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private accountService: AccountService,
-              private snackHelper: SnackBarHelper ) { }
+              private snackHelper: SnackBarHelper,
+              private router: Router ) { }
 
   registerForm: FormGroup;
   user: User;
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(255)
+      ]),
+      lastName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(255)
+      ]),
       email: new FormControl('', [ 
         Validators.required,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") 
@@ -62,7 +74,7 @@ export class RegisterComponent implements OnInit {
 
     this.accountService.localStorage.saveUserData(response);
 
-    this.snackHelper.showSnackbar('Usuário registrado com sucesso!', MessageType.OkMessage);
+    this.snackHelper.showSnackbar('Usuário registrado com sucesso!', MessageType.OkMessage, 2000);    
   }
 
   proccessError = (fail: any) => {

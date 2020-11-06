@@ -1,11 +1,9 @@
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar} from "@angular/material/snack-bar";
 import { Router } from '@angular/router';
+
 import { MessageType } from 'src/app/helpers/message-type.enum';
 import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
-
 import { User } from '../models/user.model';
 import { AccountService } from '../services/account.service';
 
@@ -16,8 +14,7 @@ import { AccountService } from '../services/account.service';
 })
 export class LogInComponent implements OnInit {
 
-  constructor(private accountService: AccountService,
-              private snackBar: MatSnackBar,
+  constructor(private accountService: AccountService,              
               private router: Router,
               private snackHelper: SnackBarHelper) { }
 
