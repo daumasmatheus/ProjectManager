@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Authentication.Extensions;
 using ProjectManager.Authentication.Services;
 using ProjectManager.Authentication.ViewModels;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjectManager.Authentication.Controllers
@@ -79,6 +81,40 @@ namespace ProjectManager.Authentication.Controllers
 
             AddProccessError("Usuário ou senha incorretos");
             return CustomResponse();
+        }
+
+        [HttpPost("external-auth")]
+        public async Task<ActionResult> ExternalAuth([FromBody]ExternalUser externalUser)
+        {
+            var user = _userManager.Users.Where(x => x.ExternalUserId == externalUser.ExternalUserId).FirstOrDefault();
+
+            if (user != null)
+            {
+                return CustomResponse(await _authenticationService.GenerateJWT(user.Email));
+            }
+            else
+            {
+                var newUser = new ApplicationUser
+                {
+                    FirstName = externalUser.FirstName,
+                    LastName = externalUser.LastName,
+                    UserName = externalUser.Email,
+                    Email = externalUser.Email,
+                    Provider = externalUser.Provider,
+                    ExternalUserId = externalUser.ExternalUserId
+                };
+
+                var result = await _userManager.CreateAsync(newUser);
+
+                if (result.Succeeded) return CustomResponse(await _authenticationService.GenerateJWT(externalUser.Email));
+
+                foreach (var error in result.Errors)
+                {
+                    AddProccessError(error.Description);
+                }
+
+                return CustomResponse();
+            }
         }
     }
 }

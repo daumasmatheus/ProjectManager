@@ -10,7 +10,7 @@ using ProjectManager.Authentication.Data;
 namespace ProjectManager.Authentication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201106211439_Initial")]
+    [Migration("20201107183128_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -175,6 +175,9 @@ namespace ProjectManager.Authentication.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ExternalUserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -203,6 +206,9 @@ namespace ProjectManager.Authentication.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Provider")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

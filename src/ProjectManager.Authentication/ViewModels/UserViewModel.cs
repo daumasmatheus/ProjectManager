@@ -26,6 +26,15 @@ namespace ProjectManager.Authentication.ViewModels
         public string PasswordConfirmation { get; set; }
     }
 
+    public class ExternalUser
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Provider { get; set; }
+        public string ExternalUserId { get; set; }
+    }
+
     public class UserLogin
     {
         [Required(ErrorMessage = "Campo {0} obrigatório")]
