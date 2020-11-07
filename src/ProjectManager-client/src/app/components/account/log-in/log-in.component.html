@@ -9,4 +9,8 @@
         <mat-error *ngIf="hasError('password', 'required')">Informe a senha</mat-error>
     </mat-form-field>
     <button mat-raised-button [disabled]="!loginForm.valid">Log In</button>
+    
+    <a class="btn btn-block btn-social btn-google google-auth-btn" (click)="signInWithGoogle()">
+        <span class="fa fa-google"></span> Entre com o Google
+    </a>
 </form>   

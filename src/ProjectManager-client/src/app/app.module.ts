@@ -3,13 +3,13 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { LogInComponent } from './components/account/log-in/log-in.component';
-import { RegisterComponent } from './components/account/register/register.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AccountService } from './components/account/services/account.service';
 import { SnackBarHelper } from './helpers/snack-bar.helper';
+
+import { SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -20,10 +20,23 @@ import { SnackBarHelper } from './helpers/snack-bar.helper';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    FlexLayoutModule    
+    FlexLayoutModule,
+    SocialLoginModule 
   ],
   providers: [
-    SnackBarHelper
+    SnackBarHelper,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('1084083418579-2bhhi5vq01qvn65vmgu6gt123vmfl9jv.apps.googleusercontent.com')
+          }
+        ]
+      } as SocialAuthServiceConfig      
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

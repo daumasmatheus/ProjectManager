@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SocialAuthService, SocialUser } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login"; 
+import { Observable, from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { MessageType } from 'src/app/helpers/message-type.enum';
 import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
+import { ExternalUser } from '../models/externalUser.model';
 import { User } from '../models/user.model';
 import { AccountService } from '../services/account.service';
 
@@ -16,17 +21,43 @@ export class LogInComponent implements OnInit {
 
   constructor(private accountService: AccountService,              
               private router: Router,
-              private snackHelper: SnackBarHelper) { }
+              private snackHelper: SnackBarHelper,
+              private authService: SocialAuthService) { }
 
   loginForm: FormGroup;
   user: User;
-  loginIn: boolean = false;
+  externalUser: ExternalUser;
+  loginIn: boolean = false;  
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
-    })
+    });  
+    
+    // this.authService.authState.subscribe((user) => {
+    //   console.log('google user', user);
+    // }, 
+    // error => console.error(error))
+  }
+
+  signInWithGoogle() {
+    from(this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)).pipe(
+      switchMap((socialUser: SocialUser) => {
+        this.externalUser = {
+          firstName: socialUser.firstName,
+          lastName: socialUser.lastName,
+          email: socialUser.email,
+          provider: socialUser.provider,
+          externalUserId: socialUser.id          
+        }
+
+        return this.accountService.externalAuth(this.externalUser)
+      })
+    ).subscribe(
+      result => { this.proccessResult(result) },
+      error => { this.proccessError(error) }
+    );    
   }
 
   hasError = (controlName: string, errorName: string) => {
@@ -43,7 +74,7 @@ export class LogInComponent implements OnInit {
             error => {this.proccessError(error)}
       );
     }
-  }
+  }  
 
   proccessResult = (response: any) => {
     this.loginForm.disable();
