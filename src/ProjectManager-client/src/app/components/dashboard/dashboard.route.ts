@@ -8,7 +8,7 @@ const routes: Routes = [
     {
         path: '', component: DashboardComponent,
         children: [
-            { path: 'workspace', component: WorkspaceComponent}
+            { path: 'workspace', component: WorkspaceComponent }
         ]
     }
     //{ path: 'path/:routeParam', component: MyComponent },
