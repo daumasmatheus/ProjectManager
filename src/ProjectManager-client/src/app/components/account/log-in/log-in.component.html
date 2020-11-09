@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" novalidate (ngSubmit)="login()"  fxLayout="column" class="auth-form">   
+<form [formGroup]="loginForm" novalidate (ngSubmit)="login()"  fxLayout="column" class="auth-form">    
     <mat-form-field>
         <input matInput formControlName="email" placeholder="Email">
         <mat-error *ngIf="hasError('email', 'required')">Informe o email</mat-error>
@@ -13,4 +13,4 @@
     <a class="btn btn-block btn-social btn-google google-auth-btn" (click)="signInWithGoogle()">
         <span class="fa fa-google"></span> Entre com o Google
     </a>
-</form>   
+</form>

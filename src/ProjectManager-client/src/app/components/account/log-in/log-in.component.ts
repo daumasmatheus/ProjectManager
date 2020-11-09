@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login"; 
-import { Observable, from } from 'rxjs';
+import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { MessageType } from 'src/app/helpers/message-type.enum';
@@ -33,12 +33,7 @@ export class LogInComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
-    });  
-    
-    // this.authService.authState.subscribe((user) => {
-    //   console.log('google user', user);
-    // }, 
-    // error => console.error(error))
+    }); 
   }
 
   signInWithGoogle() {
@@ -93,5 +88,5 @@ export class LogInComponent implements OnInit {
     fail.error.errors.Messages.forEach(errorMessage => {
       this.snackHelper.showSnackbar(errorMessage, MessageType.ErrorMessage);
     });    
-  }  
+  }
 }
