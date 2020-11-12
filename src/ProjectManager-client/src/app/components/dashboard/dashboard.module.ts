@@ -9,6 +9,8 @@ import { NavigationModule } from '../navigation/navigation.module';
 import { OverviewComponent } from './overview/overview.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { AvatarModule } from 'ngx-avatar';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { ProjectsComponent } from './projects/projects.component';
         DashboardRoutingModule,
         AngularMaterialModule,
         FlexLayoutModule,
-        NavigationModule
+        NavigationModule,
+        HttpClientModule,
+        AvatarModule
     ],
     exports: [],
     providers: [],
