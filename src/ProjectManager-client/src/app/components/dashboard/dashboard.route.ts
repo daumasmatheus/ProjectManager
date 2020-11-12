@@ -2,11 +2,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { DashboardComponent } from './dashboard.app.component';
+import { OverviewComponent } from './overview/overview.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 const routes: Routes = [
     {
         path: '', component: DashboardComponent,
-        children: []
+        children: [     
+            { path: '', pathMatch: 'full', redirectTo: 'overview'},       
+            { path: 'overview', component: OverviewComponent },
+            { path: 'tasks', component: TasksComponent },
+            { path: 'projects', component: ProjectsComponent }            
+        ]
     }
     //{ path: 'path/:routeParam', component: MyComponent },
     //{ path: 'staticPath', component: ... },
