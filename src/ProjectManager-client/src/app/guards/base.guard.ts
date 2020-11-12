@@ -2,7 +2,7 @@ import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { LocalStorageUtils } from '../helpers/localstorage';
 
 export abstract class BaseGuard {
-    private localStorageUtils = new LocalStorageUtils();
+    protected localStorageUtils = new LocalStorageUtils();
 
     constructor(protected router: Router) { }
 
@@ -39,5 +39,9 @@ export abstract class BaseGuard {
 
     protected navigateToAccessDenied() {
         this.router.navigate(['/access-denied']);
+    }
+
+    protected navigateToLogin() {
+        this.router.navigate(['/account/login']);
     }
 }

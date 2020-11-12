@@ -5,10 +5,11 @@ import { DashboardComponent } from './dashboard.app.component';
 import { OverviewComponent } from './overview/overview.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { JwtValidationGuard } from './guards/jwt-validation.guard';
 
 const routes: Routes = [
     {
-        path: '', component: DashboardComponent,
+        path: '', component: DashboardComponent, canActivate: [JwtValidationGuard],
         children: [     
             { path: '', pathMatch: 'full', redirectTo: 'overview'},       
             { path: 'overview', component: OverviewComponent },
