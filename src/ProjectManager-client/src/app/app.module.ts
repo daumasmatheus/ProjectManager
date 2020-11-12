@@ -10,6 +10,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnackBarHelper } from './helpers/snack-bar.helper';
+import { NavigationModule } from './components/navigation/navigation.module';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#fff',
@@ -33,7 +34,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SocialLoginModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule,
-    NgxUiLoaderRouterModule 
+    NgxUiLoaderRouterModule,
+    NavigationModule
   ],
   providers: [
     SnackBarHelper,

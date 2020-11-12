@@ -1,19 +1,26 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FooterComponent } from './footer/footer.component';
+import { AngularMaterialModule } from 'src/app/angular-material.module';
 
 @NgModule({
     declarations: [
         AccessDeniedComponent, 
-        NotFoundComponent
+        NotFoundComponent,
+        FooterComponent
     ],
     imports: [ 
         CommonModule,
-        RouterModule 
+        RouterModule,
+        AngularMaterialModule 
     ],
-    exports: [],
+    exports: [
+        FooterComponent
+    ],
     providers: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NavigationModule {}

@@ -2,14 +2,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { DashboardComponent } from './dashboard.app.component';
-import { WorkspaceComponent } from './workspace/workspace.component';
 
 const routes: Routes = [
     {
         path: '', component: DashboardComponent,
-        children: [
-            { path: 'workspace', component: WorkspaceComponent }
-        ]
+        children: []
     }
     //{ path: 'path/:routeParam', component: MyComponent },
     //{ path: 'staticPath', component: ... },

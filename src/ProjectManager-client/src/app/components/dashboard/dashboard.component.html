@@ -1,1 +1,59 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer mode="side" opened class="example-sidenav"> 
+        <div class="m-3 text-center">
+            <img class="img-fluid" src="../../../assets/logos/profile-small.png" alt="">
+        </div>
+        <div class="text-center">
+            <div class="mb-2">
+                <a><img class="img-thumbnail" src="" alt="Foto Username"></a>
+            </div>
+            <p><strong>Username</strong></p>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <div>
+                    <a mat-button class="full-width-link" href="">Logout</a>
+                </div>
+                <div>
+                    <a mat-button class="full-width-link" href="">Profile</a>
+                </div>
+            </div>            
+        </div>
+        <mat-divider class="m-3"></mat-divider>
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+            <a class="full-width-link" mat-button href="">Dashboard</a>
+            <a class="full-width-link" mat-button href="">Minhas Tarefas</a>
+            <a class="full-width-link" mat-button href="">Meus Projetos</a>            
+        </div>
+        <mat-divider class="m-3"></mat-divider>
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+            <p><strong>Admin</strong></p>   
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        Cadastros Básicos
+                    </mat-expansion-panel-header>
+                    <div>
+                        <a class="full-width-link" mat-button href="">Usuários</a>
+                        <a class="full-width-link" mat-button href="">Pessoas</a>
+                        <a class="full-width-link" mat-button href="">Tarefas</a>
+                        <a class="full-width-link" mat-button href="">Projetos</a>
+                    </div>                    
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        Estatísticas
+                    </mat-expansion-panel-header>
+                    <a class="full-width-link" mat-button href="">Relatórios</a>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <mat-divider class="m-3"></mat-divider>
+        <app-footer></app-footer>        
+    </mat-drawer>
+    <mat-drawer-content>
+        <button class="toggle-sidenav-btn" mat-icon-button color="warn" aria-label="Expandir/contrair menu" (click)="drawer.toggle()">
+            <mat-icon>code</mat-icon>
+        </button>  
+        <router-outlet></router-outlet>
+    </mat-drawer-content>    
+</mat-drawer-container>
