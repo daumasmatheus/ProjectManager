@@ -5,9 +5,9 @@
         </div>
         <div class="text-center">
             <div class="mb-2" fxLayout="row" fxLayoutAlign="center center">
-                <ngx-avatar name="Matheus Daumas" size="100"></ngx-avatar>
+                <ngx-avatar name="{{userName}}" size="100"></ngx-avatar>
             </div>
-            <p><strong>Username</strong></p>
+            <p><strong>{{userName}}</strong></p>
             <div fxLayout="row" fxLayoutAlign="space-evenly center">
                 <div>
                     <a mat-button class="full-width-link" (click)="logout()">Logout</a>
