@@ -46,6 +46,8 @@ namespace ProjectManager.Authentication.Services
                 {
                     Id = user.Id,
                     Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
                     Claims = claims.Select(c => new UserClaim { Type = c.Type, Value = c.Value })
                 }
             };
