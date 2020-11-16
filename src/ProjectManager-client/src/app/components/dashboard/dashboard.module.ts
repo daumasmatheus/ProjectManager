@@ -12,13 +12,15 @@ import { OverviewComponent } from './overview/overview.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { JwtValidationGuard } from './guards/jwt-validation.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
     declarations: [
         DashboardComponent,
         OverviewComponent,        
         TasksComponent,
-        ProjectsComponent        
+        ProjectsComponent,
+        ProfileComponent        
     ],
     imports: [ 
         CommonModule,

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { LocalStorageUtils } from 'src/app/helpers/localstorage';
 import { MessageType } from 'src/app/helpers/message-type.enum';
 import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
-import { User } from '../account/models/user.model';
+import { ProfileComponent } from './profile/profile.component';
 
 @Component({
     selector: 'app-dashbord',
@@ -14,15 +15,18 @@ import { User } from '../account/models/user.model';
 export class DashboardComponent implements OnInit { 
 
     constructor (private snackHelper: SnackBarHelper,
-                 private router: Router) {}    
+                 private router: Router,
+                 private dialog: MatDialog) {}    
 
     private localStorageUtils = new LocalStorageUtils();
 
-    userName: string;
+    userName: string;        
 
     ngOnInit(): void {
         var loggedUser = this.localStorageUtils.getUser();
-        this.userName = `${loggedUser.firstName} ${loggedUser.lastName}`;
+        console.log(loggedUser);
+
+        this.userName = `${loggedUser.firstName} ${loggedUser.lastName}`;        
     }
 
     logout() {
@@ -32,5 +36,16 @@ export class DashboardComponent implements OnInit {
         setTimeout(() => {
             this.router.navigate(['/account/login']);
         }, 3000);
+    }
+
+    openProfileDialog() {
+        this.dialog.open(ProfileComponent, {
+            hasBackdrop: true,        
+            panelClass: 'full-width-dialog',
+            height: '490px',
+            data: { 
+                userName: this.userName,                
+            }
+        });
     }
 }

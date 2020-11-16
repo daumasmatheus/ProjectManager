@@ -13,7 +13,7 @@
                     <a mat-button class="full-width-link" (click)="logout()">Logout</a>
                 </div>
                 <div>
-                    <a mat-button class="full-width-link" href="">Profile</a>
+                    <a mat-button class="full-width-link" (click)="openProfileDialog()">Profile</a>
                 </div>
             </div>            
         </div>
@@ -54,6 +54,6 @@
         <button class="toggle-sidenav-btn" mat-icon-button color="warn" aria-label="Expandir/contrair menu" (click)="drawer.toggle()">
             <mat-icon>code</mat-icon>
         </button>  
-        <router-outlet></router-outlet>
+        <router-outlet></router-outlet>        
     </mat-drawer-content>    
 </mat-drawer-container>
