@@ -1,5 +1,5 @@
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer mode="side" opened class="example-sidenav"> 
+    <mat-drawer #drawer mode="over" opened class="example-sidenav">           
         <div class="text-center">
             <img class="img-fluid" src="../../../assets/logos/profile-small.png" alt="">
         </div>
@@ -51,9 +51,11 @@
         <app-footer></app-footer>        
     </mat-drawer>
     <mat-drawer-content>
-        <button class="toggle-sidenav-btn" mat-icon-button color="warn" aria-label="Expandir/contrair menu" (click)="drawer.toggle()">
-            <mat-icon>code</mat-icon>
-        </button>  
+        <mat-toolbar class="mb-3 custom-toolbar">
+            <button mat-icon-button aria-label="Expandir/contrair menu" (click)="drawer.toggle()">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+        </mat-toolbar>        
         <router-outlet></router-outlet>        
     </mat-drawer-content>    
 </mat-drawer-container>

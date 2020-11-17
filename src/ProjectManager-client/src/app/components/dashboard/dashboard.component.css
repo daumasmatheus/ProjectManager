@@ -39,3 +39,11 @@
 ::ng-deep .user-photo :hover {
   cursor: pointer;
 }
+
+.custom-toolbar {
+  background-color: #52435f;
+}
+
+.custom-toolbar mat-icon {
+  color: #d6d6d6;
+}
