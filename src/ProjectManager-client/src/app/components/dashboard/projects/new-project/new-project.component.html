@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step label="Dados do projeto">
+                    <form>
+                        <div class="row" align="center">
+                            <div class="col">
+                                <mat-form-field class="full-width-form"> 
+                                    <mat-label>Título do projeto</mat-label>
+                                    <input matInput placeholder="Título">
+                                </mat-form-field>
+                            </div> 
+                        </div>
+                        <div class="row" align="center">
+                            <div class="col">
+                                <mat-form-field class="full-width-form">
+                                    <mat-label>Descrição do projeto</mat-label>
+                                    <textarea matInput></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row" align="center">
+                            <div class="col-sm-2 offset-sm-3">
+                                <mat-form-field>
+                                    <mat-label>Data de Ínicio</mat-label>
+                                    <input matInput [matDatepicker]="InitialDatepicker">
+                                    <mat-datepicker-toggle matSuffix [for]="InitialDatepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #InitialDatepicker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-3 offset-sm-1">
+                                <mat-form-field>
+                                    <mat-label>Data de Término</mat-label>
+                                    <input matInput [matDatepicker]="EndDatepicker">
+                                    <mat-datepicker-toggle matSuffix [for]="EndDatepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #EndDatepicker></mat-datepicker>
+                                </mat-form-field>    
+                            </div>
+                        </div>
+                    </form>
+                    <button mat-flat-button color="primary" matStepperNext>Avançar</button>
+                </mat-step>
+
+                <mat-step label="Participantes">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Nome</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" #input>
+                    </mat-form-field>
+                    <div>
+                        <table mat-table matSort [dataSource]="dataSource" style="width: 100%;">
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+                                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                [checked]="selection.hasValue() && isAllSelected()"
+                                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                                [aria-label]="checkboxLabel()">
+                                  </mat-checkbox>
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                  <mat-checkbox (click)="$event.stopPropagation()"
+                                                (change)="$event ? selection.toggle(row) : null"
+                                                [checked]="selection.isSelected(row)"
+                                                [aria-label]="checkboxLabel(row)">
+                                  </mat-checkbox>
+                                </td>
+                            </ng-container>
+                                                        
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                                <td mat-cell *matCellDef="let row">{{row.id}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+                                <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>                            
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="4">Nenhum dado correspondente ao filtro "{{input.value}}"</td>
+                            </tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
+                    </div>
+
+                    <button mat-button matStepperPrevious>Voltar</button>
+                    <button mat-flat-button color="primary" matStepperNext>Avançar</button>
+                </mat-step>
+    
+                <mat-step label="Tarefas">
+                    <div class="row">
+                        <div class="col">
+                            <button mat-flat-button>Nova Tarefa</button>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                    <button mat-button matStepperPrevious>Voltar</button>
+                    <button mat-button matStepperNext>Avançar</button>
+                </mat-step>
+    
+                <mat-step label="Confira os dados">
+                    <div>
+                        <p>Confira os dados do projeto</p>
+                    </div>
+                    <button mat-button matStepperPrevious>Voltar</button>
+                    <button mat-button matStepperNext>Avançar</button>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>
