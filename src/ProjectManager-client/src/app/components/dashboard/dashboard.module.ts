@@ -9,18 +9,20 @@ import { DashboardComponent } from './dashboard.app.component';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { NavigationModule } from '../navigation/navigation.module';
 import { OverviewComponent } from './overview/overview.component';
-import { TasksComponent } from './tasks/tasks.component';
-import { ProjectsComponent } from './projects/projects.component';
 import { JwtValidationGuard } from './guards/jwt-validation.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { ProjectComponent } from './projects/project/project.component';
+import { ProjectHeaderComponent } from './projects/project-header/project-header.component';
+import { NewProjectComponent } from './projects/new-project/new-project.component';
 
 @NgModule({
     declarations: [
         DashboardComponent,
-        OverviewComponent,        
-        TasksComponent,
-        ProjectsComponent,
-        ProfileComponent        
+        OverviewComponent,
+        ProfileComponent,
+        ProjectComponent,
+        ProjectHeaderComponent,
+        NewProjectComponent        
     ],
     imports: [ 
         CommonModule,
