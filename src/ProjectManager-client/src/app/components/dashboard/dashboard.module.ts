@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProjectComponent } from './projects/project/project.component';
 import { ProjectHeaderComponent } from './projects/project-header/project-header.component';
 import { NewProjectComponent } from './projects/new-project/new-project.component';
+import { TableComponentComponent } from './base-components/table-component/table-component.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { NewProjectComponent } from './projects/new-project/new-project.componen
         ProfileComponent,
         ProjectComponent,
         ProjectHeaderComponent,
-        NewProjectComponent        
+        NewProjectComponent,
+        TableComponentComponent        
     ],
     imports: [ 
         CommonModule,
