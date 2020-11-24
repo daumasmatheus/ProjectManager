@@ -1,3 +1,26 @@
 .full-width-form {
     width: 70%;
 }
+
+.project-info-container {
+    width: 60%;
+}
+
+.task-card {
+    width: 300px;
+    height: 270px;
+    cursor: pointer;
+}
+
+.task-card-content {
+    max-height: 100px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.tasks-card-container {
+    max-height: 500px;
+    overflow-y: scroll;
+}

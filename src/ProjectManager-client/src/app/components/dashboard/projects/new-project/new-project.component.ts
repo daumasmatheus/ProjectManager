@@ -1,4 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
+import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
 
 export interface Person {
   id: number,
@@ -19,11 +22,20 @@ export class NewProjectComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name'];
   people: Person[] = Array.from({length: 100}, (_, k) => createNewPerson(k+1));
 
-  constructor() { }
+  constructor(private dialog: MatDialog,
+              private snackHelper: SnackBarHelper) { }
 
   ngAfterViewInit(): void { }
 
   ngOnInit(): void { }
+
+  openNewTaskDialog() {
+    this.dialog.open(AddTaskDialogComponent, {
+      hasBackdrop: true,
+      height: '540px',
+      width: '700px'
+    })
+  }
 }
 
 function createNewPerson(id: number): Person {
