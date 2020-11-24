@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnackBarHelper } from './helpers/snack-bar.helper';
 import { NavigationModule } from './components/navigation/navigation.module';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#fff',
@@ -39,6 +40,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   providers: [
     SnackBarHelper,
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
