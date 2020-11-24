@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Nova Tarefa</h2>
+<hr>
+<mat-dialog-content class="mat-typography">
+    <form>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width-form"> 
+                    <mat-label>Título</mat-label>
+                    <input matInput placeholder="Título">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row" align="center">             
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Prioridade</mat-label>
+                    <mat-select>
+                      <mat-option value="1" selected>Baixa</mat-option>
+                      <mat-option value="2" selected>Normal</mat-option>
+                      <mat-option value="3" selected>Urgente</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Data de conclusão</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width-form">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+
+    <div class="mb-2 p-2 border rounded">
+        <mat-label>Responsável</mat-label>
+        <mat-selection-list #person [multiple]="false">
+            <mat-list-option *ngFor="let person of PEOPLE">
+                <div class="row">
+                    <div class="col justify-content-start">
+                        <ngx-avatar name="{{person}}" size="35"></ngx-avatar>
+                    </div>
+                    <div class="col align-self-center">
+                        {{person}}
+                    </div>
+                </div>
+            </mat-list-option>
+        </mat-selection-list>
+    </div>    
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button color="warn" (click)="closeDialog()">Cancelar</button>
+    <button mat-flat-button color="primary" class="float-right">Salvar</button>
+</mat-dialog-actions>
