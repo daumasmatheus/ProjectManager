@@ -6,12 +6,14 @@ import { SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-logi
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
 import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnackBarHelper } from './helpers/snack-bar.helper';
 import { NavigationModule } from './components/navigation/navigation.module';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentPipe } from './helpers/moment.pipe';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#fff',
@@ -24,7 +26,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent           
+    AppComponent               
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   providers: [
     SnackBarHelper,
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },    
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
