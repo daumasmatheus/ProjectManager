@@ -1,20 +1,24 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <mat-horizontal-stepper linear #stepper>
-                <mat-step label="Dados do projeto">
-                    <form>
+            <mat-horizontal-stepper [linear]="true" #stepper labelPosition="bottom" class="shadow-sm">
+                <mat-step label="Dados do projeto" [completed]="isStepComplete(1)" [editable]="disablePrevSteps">
+                    <form [formGroup]="projectDataForm" novalidate class="mb-3">
                         <div class="row">
                             <div class="col-md-8">
                                 <mat-form-field style="width: 100%;"> 
                                     <mat-label>Título do projeto</mat-label>
-                                    <input matInput placeholder="Título">
+                                    <input matInput formControlName="projectTitle" placeholder="Título">
+                                    <mat-error *ngIf="hasError('projectTitle', 'required')">Informe o título do projeto</mat-error>
+                                    <mat-error *ngIf="hasError('projectTitle', 'maxLength')">Máximo de 255 caracteres</mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="col-sm-auto">
                                 <mat-form-field>
                                     <mat-label>Data de Ínicio</mat-label>
-                                    <input matInput [matDatepicker]="InitialDatepicker">
+                                    <input matInput formControlName="startDate" [matDatepicker]="InitialDatepicker" readonly (click)="InitialDatepicker.open()">
+                                    <mat-error *ngIf="hasError('startDate', 'required')">Informe a data de inicio do projeto</mat-error>
+                                    <mat-error *ngIf="hasError('startDate', 'invalidDate')">A data não pode ser anterior a data presente</mat-error>
                                     <mat-datepicker-toggle matSuffix [for]="InitialDatepicker"></mat-datepicker-toggle>
                                     <mat-datepicker #InitialDatepicker></mat-datepicker>
                                 </mat-form-field>
@@ -22,7 +26,9 @@
                             <div class="col-sm-auto">
                                 <mat-form-field>
                                     <mat-label>Data de Término</mat-label>
-                                    <input matInput [matDatepicker]="EndDatepicker">
+                                    <input matInput formControlName="endDate" [matDatepicker]="EndDatepicker" (click)="EndDatepicker.open()" readonly>
+                                    <mat-error *ngIf="hasError('endDate', 'invalidDate')">A data não pode ser anterior a data presente</mat-error>
+                                    <mat-error *ngIf="hasError('endDate', 'required')">Informe a data de término do projeto</mat-error>
                                     <mat-datepicker-toggle matSuffix [for]="EndDatepicker"></mat-datepicker-toggle>
                                     <mat-datepicker #EndDatepicker></mat-datepicker>
                                 </mat-form-field>
@@ -32,236 +38,100 @@
                             <div class="col">
                                 <mat-form-field style="width: 100%;">
                                     <mat-label>Descrição do projeto</mat-label>
-                                    <textarea matInput></textarea>
+                                    <textarea matInput formControlName="description"></textarea>
+                                    <mat-error *ngIf="hasError('description', 'required')">Informe a descrição do projeto</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
                     </form>
-                    <button mat-flat-button color="primary" matStepperNext>Avançar</button>
+                    <button mat-flat-button color="primary" matStepperNext (click)="saveProjectData()" [disabled]="!projectDataForm.valid">Avançar</button>
                 </mat-step>
 
-                <mat-step label="Participantes">
-                    <app-table-component [data]="people" [columns]="displayedColumns" [isSelectable]="true"></app-table-component>
+                <mat-step label="Participantes" [completed]="isStepComplete(2)" [editable]="disablePrevSteps">
+                    <p class="text-muted">Ao menos um participante deve ser selecionado</p>
+                    <app-table-component [data]="people" [columns]="displayedColumns" [isSelectable]="true" #attendantsTable></app-table-component>
                     <button mat-stroked-button matStepperPrevious class="mr-2">Voltar</button>
-                    <button mat-flat-button color="primary" matStepperNext>Avançar</button>
+                    <button mat-flat-button color="primary" (click)="getAttendants()" [disabled]="attendantsTable.selection.selected.length == 0">Avançar</button>
                 </mat-step>
     
-                <mat-step label="Tarefas">                    
-                    <div class="row">
+                <mat-step label="Tarefas" [completed]="isStepComplete(3)" [editable]="disablePrevSteps">                    
+                    <div class="row mb-2 mt-2">
                         <div class="col">
                             <button mat-flat-button (click)="openNewTaskDialog()" color="primary">Nova Tarefa</button>
                         </div>
                     </div>
 
-                    <div class="row mt-2 mb-2 tasks-card-container">
-                        <div class="col-sm-auto mb-1">                            
-                            <mat-card class="task-card" matRipple>
-                                <mat-card-header>
-                                  <mat-card-title>Task Title</mat-card-title>
-                                  <mat-card-subtitle>
-                                    <div class="row">
-                                        <div class="col">
-                                            <ngx-avatar name="Joseph Joestar" size="25"></ngx-avatar>
-                                        </div>
-                                        <div>
-                                            <p>Joseph Joestar</p>
-                                        </div>
-                                    </div>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="task-card-content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        Task Conclusion Date: 01/01/1010
-                                    </div>
-                                </mat-card-content>   
-                                <mat-card-actions>
-                                    <button mat-button color="warn"><mat-icon>delete</mat-icon></button>
-                                </mat-card-actions>                             
-                            </mat-card>
+                    <ng-container *ngIf="projectTasks != null && projectTasks.length > 0">
+                        <div class="row mt-2 mb-2 p-1 align-items-center border rounded-sm shadow-sm" *ngFor="let task of projectTasks">
+                            <div class="align-self-center">
+                                <ngx-avatar class="float-left mr-1" [size]="35" [name]="task.attendant[0].name"></ngx-avatar>
+                            </div>
+                            <div class="col">
+                                {{task.attendant[0].name}}
+                            </div>
+                            <div class="col text-truncate">
+                                {{task.title}}
+                            </div>
+                            <div class="text-truncate">
+                                Concl.: {{task.conclusionDate | momentPipe: 'DD/MM'}}
+                            </div>
+                            <div class="mr-3 ml-3" align="center">
+                                <span class="badge badge-pill" [ngClass]="{'badge-success': task.priority == 1, 
+                                                                           'badge-primary' : task.priority == 2, 
+                                                                           'badge-danger' : task.priority == 3}">
+                                    {{task.priority == 1 ? 'Baixa' : task.priority == 2 ? 'Normal' : 'Urgente'}}
+                                </span>
+                            </div>
+                            <div class="col" align="center">
+                                <button mat-button (click)="editTask(task)"><mat-icon color="primary">edit</mat-icon></button>
+                                <button mat-button (click)="removeTask(task)"><mat-icon color="warn">delete_outline</mat-icon></button>
+                            </div>
                         </div>
+                    </ng-container>                    
 
-                        <div class="col-sm-auto mb-1">                            
-                            <mat-card class="task-card" matRipple>
-                                <mat-card-header>
-                                  <mat-card-title>Task Title</mat-card-title>
-                                  <mat-card-subtitle>
-                                    <div class="row">
-                                        <div class="col">
-                                            <ngx-avatar name="Joseph Joestar" size="25"></ngx-avatar>
-                                        </div>
-                                        <div>
-                                            <p>Joseph Joestar</p>
-                                        </div>
-                                    </div>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="task-card-content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        Task Conclusion Date: 01/01/1010
-                                    </div>
-                                </mat-card-content>   
-                                <mat-card-actions>
-                                    <button mat-button color="warn"><mat-icon>delete</mat-icon></button>
-                                </mat-card-actions>                             
-                            </mat-card>
-                        </div>
-
-                        <div class="col-sm-auto mb-1">                            
-                            <mat-card class="task-card" matRipple>
-                                <mat-card-header>
-                                  <mat-card-title>Task Title</mat-card-title>
-                                  <mat-card-subtitle>
-                                    <div class="row">
-                                        <div class="col">
-                                            <ngx-avatar name="Joseph Joestar" size="25"></ngx-avatar>
-                                        </div>
-                                        <div>
-                                            <p>Joseph Joestar</p>
-                                        </div>
-                                    </div>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="task-card-content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        Task Conclusion Date: 01/01/1010
-                                    </div>
-                                </mat-card-content>   
-                                <mat-card-actions>
-                                    <button mat-button color="warn"><mat-icon>delete</mat-icon></button>
-                                </mat-card-actions>                             
-                            </mat-card>
-                        </div>
-
-                        <div class="col-sm-auto mb-1">                            
-                            <mat-card class="task-card" matRipple>
-                                <mat-card-header>
-                                  <mat-card-title>Task Title</mat-card-title>
-                                  <mat-card-subtitle>
-                                    <div class="row">
-                                        <div class="col">
-                                            <ngx-avatar name="Joseph Joestar" size="25"></ngx-avatar>
-                                        </div>
-                                        <div>
-                                            <p>Joseph Joestar</p>
-                                        </div>
-                                    </div>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="task-card-content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        Task Conclusion Date: 01/01/1010
-                                    </div>
-                                </mat-card-content>   
-                                <mat-card-actions>
-                                    <button mat-button color="warn"><mat-icon>delete</mat-icon></button>
-                                </mat-card-actions>                             
-                            </mat-card>
-                        </div>
-
-                        <div class="col-sm-auto mb-1">                            
-                            <mat-card class="task-card" matRipple>
-                                <mat-card-header>
-                                  <mat-card-title>Task Title</mat-card-title>
-                                  <mat-card-subtitle>
-                                    <div class="row">
-                                        <div class="col">
-                                            <ngx-avatar name="Joseph Joestar" size="25"></ngx-avatar>
-                                        </div>
-                                        <div>
-                                            <p>Joseph Joestar</p>
-                                        </div>
-                                    </div>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="task-card-content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        Task Conclusion Date: 01/01/1010
-                                    </div>
-                                </mat-card-content>   
-                                <mat-card-actions>
-                                    <button mat-button color="warn"><mat-icon>delete</mat-icon></button>
-                                </mat-card-actions>                             
-                            </mat-card>
-                        </div>
-
-                        <div class="col-sm-auto mb-1">                            
-                            <mat-card class="task-card" matRipple>
-                                <mat-card-header>
-                                  <mat-card-title>Task Title</mat-card-title>
-                                  <mat-card-subtitle>
-                                    <div class="row">
-                                        <div class="col">
-                                            <ngx-avatar name="Joseph Joestar" size="25"></ngx-avatar>
-                                        </div>
-                                        <div>
-                                            <p>Joseph Joestar</p>
-                                        </div>
-                                    </div>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="task-card-content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        Task Conclusion Date: 01/01/1010
-                                    </div>
-                                </mat-card-content>   
-                                <mat-card-actions>
-                                    <button mat-button color="warn"><mat-icon>delete</mat-icon></button>
-                                </mat-card-actions>                             
-                            </mat-card>
-                        </div>
-                    </div>                    
                     <button mat-stroked-button matStepperPrevious class="mr-2">Voltar</button>
-                    <button mat-flat-button matStepperNext color="primary">Avançar</button>
+                    <button mat-flat-button color="primary" [disabled]="projectTasks.length == 0" (click)="createProject()">Concluir</button>
                 </mat-step>
     
-                <mat-step label="Confira os dados">
-                    <div>
-                        <p>Confira os dados do projeto</p>
+                <mat-step label="Conclusão">
+                    <!-- <div class="row mb-3" *ngIf="projectData != null && projectData.attendants != null">
+                        <div class="offset-md-2 col-md-5">
+                            <h1 class="m-0">Projeto {{projectData.projectTitle}}</h1>
+                            <p class="m-0">{{projectData.attendants.length}} participantes</p>
+                        </div>
+                        <div class="col ml-2 align-self-center">
+                            <p class="m-0">Data de Início {{projectData.startDate.toLocaleDateString()}}</p>
+                            <p class="m-0" *ngIf="projectData.endDate">Data de Encerramento {{projectData.endDate?.toLocaleDateString()}}</p>
+                        </div>                        
                     </div>
-                    <button mat-stroked-button matStepperPrevious class="mr-2">Voltar</button>
-                    <button mat-flat-button matStepperNext color="primary">Avançar</button>
+                    <ng-container *ngIf="projectData != null && projectData.tasks != null">
+                        <div class="row mt-2 mb-2 p-1 align-items-center border rounded-sm" *ngFor="let task of projectData.tasks">
+                            <div class="align-self-center">
+                                <ngx-avatar class="float-left mr-1" [size]="35" [name]="task.attendant[0].name"></ngx-avatar>
+                            </div>
+                            <div class="col align-self-center">
+                                {{task.attendant[0].name}}
+                            </div>
+                            <div class="col align-self-center">
+                                {{task.description}}
+                            </div>
+                            <div class="col align-self-center text-right">
+                                {{moment(task.conclusionDate)}}                                                          
+                            </div>
+                            <div class="col align-self-center">
+                                <span class="badge badge-pill badge-primary">Badge</span>
+                            </div>
+                        </div>                       
+                    </ng-container> -->
+ 
+                    <div class="d-flex flex-column mt-5 mb-5" *ngIf="projectData != null">
+                        <div>
+                            <h1 class="text-center">Projeto {{projectData.projectTitle}} criado com sucesso</h1>
+                        </div>
+                        <div align="center">
+                            <button mat-flat-button color="primary">Ir para o projeto</button>
+                        </div>
+                    </div>                                        
                 </mat-step>
             </mat-horizontal-stepper>
         </div>
