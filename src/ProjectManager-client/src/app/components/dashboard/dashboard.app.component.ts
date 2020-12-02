@@ -24,8 +24,6 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
         var loggedUser = this.localStorageUtils.getUser();
-        console.log(loggedUser);
-
         this.userName = `${loggedUser.firstName} ${loggedUser.lastName}`;        
     }
 
