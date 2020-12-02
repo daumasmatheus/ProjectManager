@@ -16,6 +16,8 @@ import { ProjectHeaderComponent } from './projects/project-header/project-header
 import { NewProjectComponent } from './projects/new-project/new-project.component';
 import { TableComponentComponent } from './base-components/table-component/table-component.component';
 import { AddTaskDialogComponent } from './projects/add-task-dialog/add-task-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MomentPipe } from 'src/app/helpers/moment.pipe';
 
 @NgModule({
     declarations: [
@@ -26,7 +28,8 @@ import { AddTaskDialogComponent } from './projects/add-task-dialog/add-task-dial
         ProjectHeaderComponent,
         NewProjectComponent,
         TableComponentComponent,
-        AddTaskDialogComponent        
+        AddTaskDialogComponent,
+        MomentPipe        
     ],
     imports: [ 
         CommonModule,
@@ -35,6 +38,8 @@ import { AddTaskDialogComponent } from './projects/add-task-dialog/add-task-dial
         FlexLayoutModule,
         NavigationModule,
         HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
         AvatarModule
     ],
     exports: [],
