@@ -16,11 +16,12 @@ export class DashboardComponent implements OnInit {
 
     constructor (private snackHelper: SnackBarHelper,
                  private router: Router,
-                 private dialog: MatDialog) {}    
+                 private dialog: MatDialog
+                 ) {}    
 
     private localStorageUtils = new LocalStorageUtils();
 
-    userName: string;        
+    userName: string;             
 
     ngOnInit(): void {
         var loggedUser = this.localStorageUtils.getUser();

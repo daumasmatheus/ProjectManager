@@ -18,6 +18,9 @@ import { TableComponentComponent } from './base-components/table-component/table
 import { AddTaskDialogComponent } from './projects/add-task-dialog/add-task-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MomentPipe } from 'src/app/helpers/moment.pipe';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faProjectDiagram, faSignOutAlt, faTasks, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faRProject } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
     declarations: [
@@ -40,10 +43,15 @@ import { MomentPipe } from 'src/app/helpers/moment.pipe';
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        AvatarModule
+        AvatarModule,
+        FontAwesomeModule
     ],
     exports: [],
     providers: [JwtValidationGuard],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class DashboardModule {}
+export class DashboardModule { 
+    constructor(library: FaIconLibrary) {
+        library.addIcons(faTasks, faProjectDiagram, faSignOutAlt, faUserCircle)
+    }
+}

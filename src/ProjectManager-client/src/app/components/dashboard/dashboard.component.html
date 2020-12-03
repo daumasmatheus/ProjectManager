@@ -10,17 +10,17 @@
             <p><strong>{{userName}}</strong></p>
             <div fxLayout="row" fxLayoutAlign="space-evenly center">
                 <div>
-                    <a mat-button class="full-width-link" (click)="logout()">Logout</a>
+                    <a mat-button class="full-width-link" (click)="logout()"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> Logout</a>
                 </div>
                 <div>
-                    <a mat-button class="full-width-link" (click)="openProfileDialog()">Profile</a>
+                    <a mat-button class="full-width-link" (click)="openProfileDialog()"><fa-icon [icon]="['fas', 'user-circle']"></fa-icon> Profile</a>
                 </div>
             </div>            
         </div>
         <mat-divider class="m-3"></mat-divider>
         <div fxLayout="column" fxLayoutAlign="space-around center">
-            <a class="full-width-link" mat-button routerLinkActive="mat-raised-button" routerLink="overview">Visão Geral</a>                  
-            <a class="full-width-link" mat-button routerLinkActive="mat-raised-button" routerLink="project">Projetos</a>
+            <a class="full-width-link" mat-button routerLinkActive="mat-raised-button" routerLink="overview"><fa-icon [icon]="['fas', 'tasks']"></fa-icon> Visão Geral</a>                  
+            <a class="full-width-link" mat-button routerLinkActive="mat-raised-button" routerLink="project"><fa-icon [icon]="['fas', 'project-diagram']"></fa-icon> Projetos</a>
         </div>
         <mat-divider class="m-3"></mat-divider>
         <div fxLayout="column" fxLayoutAlign="space-around center">
