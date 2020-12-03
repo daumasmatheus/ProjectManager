@@ -8,13 +8,13 @@
         </select>
     </div>
     <div class="col">
-        <a class="new-project-btn" mat-button routerLinkActive="mat-raised-button" routerLink="../new-project"><mat-icon>fiber_new</mat-icon> Novo Projeto</a>
+        <a class="new-project-btn" mat-button routerLinkActive="mat-raised-button" routerLink="../new-project"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Novo Projeto</a>
     </div>        
     <div class="col" align="right">
-        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary"><mat-icon>arrow_downward</mat-icon> Importar</button>
+        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary"><fa-icon [icon]="['fas', 'file-import']"></fa-icon> Importar</button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>PDF</button>
-            <button mat-menu-item>Excel</button>
+            <button mat-menu-item><fa-icon [icon]="['fas', 'file-pdf']"></fa-icon> PDF</button>
+            <button mat-menu-item><fa-icon [icon]="['fas', 'file-excel']"></fa-icon> Excel</button>
         </mat-menu>
     </div>
 </div>
