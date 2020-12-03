@@ -157,12 +157,11 @@ export class NewProjectComponent implements OnInit, AfterViewInit {
   createProject(){
     this.projectData.tasks = this.projectTasks;
     this.projectData.attendants = this.selectedAttendants;
-
     this.disablePrevSteps = true;
 
     setTimeout(() => {
       this.stepper.next();
-    }, 1);
+    }, 1);    
   }
 
   hasError(controlName: string, errorName: string){

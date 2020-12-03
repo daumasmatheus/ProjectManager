@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <mat-horizontal-stepper [linear]="true" #stepper labelPosition="bottom" class="shadow-sm">
-                <mat-step label="Dados do projeto" [completed]="isStepComplete(1)" [editable]="disablePrevSteps">
+            <mat-horizontal-stepper [linear]="true" #stepper labelPosition="bottom" class="shadow-sm" [ngClass]="{'disable-navigation': disablePrevSteps}">
+                <mat-step label="Dados do projeto" [completed]="isStepComplete(1)">
                     <form [formGroup]="projectDataForm" novalidate class="mb-3">
                         <div class="row">
                             <div class="col-md-8">
@@ -47,14 +47,14 @@
                     <button mat-flat-button color="primary" matStepperNext (click)="saveProjectData()" [disabled]="!projectDataForm.valid">Avançar</button>
                 </mat-step>
 
-                <mat-step label="Participantes" [completed]="isStepComplete(2)" [editable]="disablePrevSteps">
+                <mat-step label="Participantes" [completed]="isStepComplete(2)">
                     <p class="text-muted">Ao menos um participante deve ser selecionado</p>
                     <app-table-component [data]="people" [columns]="displayedColumns" [isSelectable]="true" #attendantsTable></app-table-component>
                     <button mat-stroked-button matStepperPrevious class="mr-2">Voltar</button>
                     <button mat-flat-button color="primary" (click)="getAttendants()" [disabled]="attendantsTable.selection.selected.length == 0">Avançar</button>
                 </mat-step>
     
-                <mat-step label="Tarefas" [completed]="isStepComplete(3)" [editable]="disablePrevSteps">                    
+                <mat-step label="Tarefas" [completed]="isStepComplete(3)">                    
                     <div class="row mb-2 mt-2">
                         <div class="col">
                             <button mat-flat-button (click)="openNewTaskDialog()" color="primary">Nova Tarefa</button>
@@ -93,37 +93,7 @@
                     <button mat-flat-button color="primary" [disabled]="projectTasks.length == 0" (click)="createProject()">Concluir</button>
                 </mat-step>
     
-                <mat-step label="Conclusão">
-                    <!-- <div class="row mb-3" *ngIf="projectData != null && projectData.attendants != null">
-                        <div class="offset-md-2 col-md-5">
-                            <h1 class="m-0">Projeto {{projectData.projectTitle}}</h1>
-                            <p class="m-0">{{projectData.attendants.length}} participantes</p>
-                        </div>
-                        <div class="col ml-2 align-self-center">
-                            <p class="m-0">Data de Início {{projectData.startDate.toLocaleDateString()}}</p>
-                            <p class="m-0" *ngIf="projectData.endDate">Data de Encerramento {{projectData.endDate?.toLocaleDateString()}}</p>
-                        </div>                        
-                    </div>
-                    <ng-container *ngIf="projectData != null && projectData.tasks != null">
-                        <div class="row mt-2 mb-2 p-1 align-items-center border rounded-sm" *ngFor="let task of projectData.tasks">
-                            <div class="align-self-center">
-                                <ngx-avatar class="float-left mr-1" [size]="35" [name]="task.attendant[0].name"></ngx-avatar>
-                            </div>
-                            <div class="col align-self-center">
-                                {{task.attendant[0].name}}
-                            </div>
-                            <div class="col align-self-center">
-                                {{task.description}}
-                            </div>
-                            <div class="col align-self-center text-right">
-                                {{moment(task.conclusionDate)}}                                                          
-                            </div>
-                            <div class="col align-self-center">
-                                <span class="badge badge-pill badge-primary">Badge</span>
-                            </div>
-                        </div>                       
-                    </ng-container> -->
- 
+                <mat-step label="Conclusão"> 
                     <div class="d-flex flex-column mt-5 mb-5" *ngIf="projectData != null">
                         <div>
                             <h1 class="text-center">Projeto {{projectData.projectTitle}} criado com sucesso</h1>
