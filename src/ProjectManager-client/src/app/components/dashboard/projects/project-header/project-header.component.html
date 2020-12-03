@@ -1,18 +1,16 @@
 <div class="row shadow p-3 mb-5 bg-white rounded">
-    <div class="col-sm-1">
-        <button mat-button><mat-icon>star</mat-icon></button>
+    <div>
+        <button mat-icon-button><mat-icon>star</mat-icon></button> 
     </div>
-    <div class="col-sm-4">                
+    <div class="col">      
         <select class="custom-select">
-            <option selected>Selecione o Projeto</option>
-            <option value="1">Projeto 1</option>
-            <option value="2">Projeto 2</option>
-            <option value="3">Projeto 3</option>
-            <option value="4">Projeto 4</option>
-            <option value="5">Projeto 5</option>
+            <option selected>Selecione o Projeto</option>            
         </select>
-    </div>    
-    <div class="col-sm-4 offset-sm-3" align="right">
+    </div>
+    <div class="col">
+        <a class="new-project-btn" mat-button routerLinkActive="mat-raised-button" routerLink="../new-project"><mat-icon>fiber_new</mat-icon> Novo Projeto</a>
+    </div>        
+    <div class="col" align="right">
         <button mat-flat-button [matMenuTriggerFor]="menu" color="primary"><mat-icon>arrow_downward</mat-icon> Importar</button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>PDF</button>

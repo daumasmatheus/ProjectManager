@@ -6,3 +6,9 @@
 .task-fav-btn {
     background-color: rgb(177, 91, 91);
 }
+
+.new-project-btn {
+    background-color: #449b58;
+    color: #f3f3f3;        
+    text-decoration: none;
+}
