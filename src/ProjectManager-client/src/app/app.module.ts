@@ -13,7 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnackBarHelper } from './helpers/snack-bar.helper';
 import { NavigationModule } from './components/navigation/navigation.module';
-import { MomentPipe } from './helpers/moment.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#fff',
@@ -38,7 +39,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule,
     NgxUiLoaderRouterModule,
-    NavigationModule
+    NavigationModule,
+    FontAwesomeModule
   ],
   providers: [
     SnackBarHelper,
