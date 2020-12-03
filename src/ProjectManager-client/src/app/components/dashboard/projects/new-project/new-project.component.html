@@ -1,11 +1,16 @@
-<div class="container-fluid">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Novo projeto</h1>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <mat-horizontal-stepper [linear]="true" #stepper labelPosition="bottom" class="shadow-sm" [ngClass]="{'disable-navigation': disablePrevSteps}">
                 <mat-step label="Dados do projeto" [completed]="isStepComplete(1)">
                     <form [formGroup]="projectDataForm" novalidate class="mb-3">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-sm">
                                 <mat-form-field style="width: 100%;"> 
                                     <mat-label>Título do projeto</mat-label>
                                     <input matInput formControlName="projectTitle" placeholder="Título">

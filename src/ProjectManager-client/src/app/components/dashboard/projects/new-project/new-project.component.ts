@@ -56,7 +56,7 @@ export class NewProjectComponent implements OnInit, AfterViewInit {
   newTask: ProjectTask;
   projectTasks: ProjectTask[] = [];
 
-  disablePrevSteps: boolean = false;
+  disablePrevSteps: boolean = false;  
 
   ngAfterViewInit(): void { }
 
@@ -157,7 +157,8 @@ export class NewProjectComponent implements OnInit, AfterViewInit {
   createProject(){
     this.projectData.tasks = this.projectTasks;
     this.projectData.attendants = this.selectedAttendants;
-    this.disablePrevSteps = true;
+
+    this.disablePrevSteps = true;    
 
     setTimeout(() => {
       this.stepper.next();
