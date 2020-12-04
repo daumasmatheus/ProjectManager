@@ -1,13 +1,5 @@
-.overview-task-list {
-    max-height: 300px;
-    height: 100%;
-    overflow-y: scroll;
-  }
-  
-  .mat-icon.notranslate.gren-icon.material-icons.mat-icon-no-color{ 
-    color: #28a745
-  }
-  
-  .mat-icon.notranslate.warn-icon.material-icons.mat-icon-no-color{ 
-    color: #ffc107
-  }
+.scrollable-col {
+  max-height: 200px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
