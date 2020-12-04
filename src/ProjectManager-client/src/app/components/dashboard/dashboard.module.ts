@@ -19,7 +19,7 @@ import { AddTaskDialogComponent } from './projects/add-task-dialog/add-task-dial
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MomentPipe } from 'src/app/helpers/moment.pipe';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faFileExcel, faFileImport, faFilePdf, faPlus, faPlusSquare, faProjectDiagram, faSignOutAlt, faTasks, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faFileExcel, faFileImport, faFilePdf, faHome, faPlus, faPlusSquare, faProjectDiagram, faSignOutAlt, faTasks, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
     declarations: [
@@ -51,6 +51,7 @@ import { faFileExcel, faFileImport, faFilePdf, faPlus, faPlusSquare, faProjectDi
 })
 export class DashboardModule { 
     constructor(library: FaIconLibrary) {
-        library.addIcons(faTasks, faProjectDiagram, faSignOutAlt, faUserCircle, faPlus, faFileImport, faFilePdf, faFilePdf, faFileExcel, faFileExcel)
+        library.addIcons(faTasks, faProjectDiagram, faSignOutAlt, faUserCircle, faPlus, 
+                         faFileImport, faFilePdf, faFilePdf, faFileExcel, faFileExcel, faHome)
     }
 }
