@@ -14,7 +14,7 @@
         <div class="col-md-6 ml-auto shadow-sm rounded-sm bg-white mb-2" *ngIf="taskSelected != null">    
             <div class="row align-items-center p-2">
                 <div>
-                    <button mat-icon-button><fa-icon [icon]="['fas', 'check']"></fa-icon></button>
+                    <button mat-icon-button (click)="toggleTaskStatus(taskSelected.isConcluded)"><fa-icon [icon]="['fas', 'check']" [ngClass]="{'task-concluded': taskSelected.isConcluded, 'task-unconcluded': !taskSelected.isConcluded}"></fa-icon></button>
                 </div>
                 <div class="col">
                     <h3 class="m-0 text-left">{{taskSelected.title}}</h3>
@@ -52,3 +52,12 @@
             </div>                         
         </div>       
 </div>
+
+<style>
+    .task-concluded {
+        color: green;
+    }
+    .task-unconcluded {
+        color: black;
+    }
+</style>

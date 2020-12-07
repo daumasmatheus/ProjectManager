@@ -3,6 +3,8 @@ import { ProjectTask } from '../models/project-task.model';
 import { Person } from '../models/person.model';
 
 import * as moment from 'moment';
+import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
+import { MessageType } from 'src/app/helpers/message-type.enum';
 
 @Component({
   selector: 'app-tasks',
@@ -30,7 +32,7 @@ export class TasksComponent implements OnInit {
 
   taskSelected: ProjectTask;
 
-  constructor() { }  
+  constructor(private snackHelper: SnackBarHelper) { }  
 
   ngOnInit(): void {
   }
@@ -38,4 +40,14 @@ export class TasksComponent implements OnInit {
   selectTask(task: ProjectTask) {
     this.taskSelected = task;
   }  
+
+  toggleTaskStatus(taskStatus: boolean) {
+    this.taskSelected.isConcluded = !taskStatus;
+
+    this.tasksList.forEach(el => {
+      if (el.id == this.taskSelected.id) el.isConcluded = !taskStatus;
+    });
+    
+    this.snackHelper.showSnackbar(`Tarefa marcada como ${ this.taskSelected.isConcluded ? 'concluída' : 'não concluída' }`, MessageType.OkMessage, 3000);
+  }
 }
