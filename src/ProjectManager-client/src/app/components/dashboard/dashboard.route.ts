@@ -6,6 +6,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { JwtValidationGuard } from './guards/jwt-validation.guard';
 import { ProjectComponent } from './projects/project/project.component';
 import { NewProjectComponent } from './projects/new-project/new-project.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,7 @@ const routes: Routes = [
             { path: '', pathMatch: 'full', redirectTo: 'overview'},       
             { path: 'overview', component: OverviewComponent },          
             { path: 'project', component: ProjectComponent },          
+            { path: 'tasks', component: TasksComponent },          
             { path: 'new-project', component: NewProjectComponent }          
         ]
     }
