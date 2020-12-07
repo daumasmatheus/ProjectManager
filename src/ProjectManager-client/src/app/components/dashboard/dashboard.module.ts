@@ -22,6 +22,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faCheck, faCheckCircle, faCheckSquare, faChevronDown, faChevronUp, faEdit, faEllipsisV, faExternalLinkAlt, faFileExcel, faFileImport, faFilePdf, faHome, faPlus, faPlusSquare, faProjectDiagram, faSignOutAlt, faTasks, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { TasksComponent } from './tasks/tasks.component';
 import { TasksHeaderComponent } from './tasks/tasks-header/tasks-header.component';
+import { PriorityTextPipe } from 'src/app/helpers/priority-text.pipe';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { TasksHeaderComponent } from './tasks/tasks-header/tasks-header.componen
         TableComponentComponent,
         AddTaskDialogComponent,
         MomentPipe,
+        PriorityTextPipe,
         TasksComponent,
         TasksHeaderComponent        
     ],

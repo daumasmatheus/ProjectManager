@@ -36,7 +36,9 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <span class="badge badge-primary">Primary</span>
+                    <span class="badge badge-primary" [ngClass]="{'badge-success': taskSelected.priority == 1, 
+                                                                  'badge-primary' : taskSelected.priority == 2, 
+                                                                  'badge-danger' : taskSelected.priority == 3}">{{ taskSelected.priority | priorityText }}</span>
                 </div>
                 <div class="col text-muted float-right" align="right">
                     <p>Conclui em {{taskSelected.conclusionDate | momentPipe: 'DD/MM/YYYY'}}</p>
