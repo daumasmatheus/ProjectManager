@@ -11,4 +11,5 @@ export class ProjectTask {
     conclusionDate: Date;
     description: string;
     attendant: Person;
+    isConcluded: boolean;
 }
