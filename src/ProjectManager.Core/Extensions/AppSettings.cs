@@ -1,9 +1,9 @@
-﻿namespace ProjectManager.Core.Configuration
+﻿namespace ProjectManager.Core.Extensions
 {
-    class AppSettings
+    public class AppSettings
     {
         public string Secret { get; set; }
-        public int ExpiresIn { get; set; }
+        public int HourToExpire { get; set; }
         public string Emitter { get; set; }
         public string ValidIn { get; set; }
     }

@@ -44,6 +44,34 @@
       "UpstreamPathTemplate": "/team/{path}",
       "UpstreamHttpMethod": [ "GET", "POST" ],
       "SwaggerKey": "Team"
+    },
+    //PROJECTS
+    {
+      "DownstreamPathTemplate": "/api/project/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44040
+        }
+      ],
+      "UpstreamPathTemplate": "/project/{path}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "SwaggerKey": "Project"
+    },
+    //TASKS
+    {
+      "DownstreamPathTemplate": "/api/task/{path}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44050
+        }
+      ],
+      "UpstreamPathTemplate": "/task/{path}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "SwaggerKey": "Task"
     }
   ],
   "SwaggerEndpoints": [
