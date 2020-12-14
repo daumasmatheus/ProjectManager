@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ProjectManager.API.ViewModels;
+using ProjectManager.API.DTOs;
 using ProjectManager.Core.Entities;
 
 namespace ProjectManager.API.Configuration
@@ -9,19 +9,19 @@ namespace ProjectManager.API.Configuration
         public MappingProfile()
         {
             #region User
-            CreateMap<UserRegister, UserRegisterViewModel>();
-            CreateMap<ExternalUser, ExternalUserViewModel>();
-            CreateMap<UserLogin, UserLoginViewModel>();
-            CreateMap<UserLoginTokenResponse, UserLoginTokenResponseViewModel>();
-            CreateMap<UserToken, UserTokenViewModel>();
-            CreateMap<UserClaim, UserClaimViewModel>();
+            CreateMap<UserRegister, UserRegisterDto>();
+            CreateMap<ExternalUser, ExternalUserDto>();
+            CreateMap<UserLogin, UserLoginDto>();
+            CreateMap<UserLoginTokenResponse, UserLoginTokenResponseDto>();
+            CreateMap<UserToken, UserTokenDto>();
+            CreateMap<UserClaim, UserClaimDto>();
 
-            CreateMap<UserRegisterViewModel, UserRegister>();
-            CreateMap<ExternalUserViewModel, ExternalUser>();
-            CreateMap<UserLoginViewModel, UserLogin>();
-            CreateMap<UserLoginTokenResponseViewModel, UserLoginTokenResponse>();
-            CreateMap<UserTokenViewModel, UserToken>();
-            CreateMap<UserClaimViewModel, UserClaim>();
+            CreateMap<UserRegisterDto, UserRegister>();
+            CreateMap<ExternalUserDto, ExternalUser>();
+            CreateMap<UserLoginDto, UserLogin>();
+            CreateMap<UserLoginTokenResponseDto, UserLoginTokenResponse>();
+            CreateMap<UserTokenDto, UserToken>();
+            CreateMap<UserClaimDto, UserClaim>();
             #endregion
         }
     }    
