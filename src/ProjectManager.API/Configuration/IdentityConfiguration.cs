@@ -1,33 +1,27 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ProjectManager.Core.Extensions;
-using ProjectManager.Infrastructure.Data.Identity;
+using ProjectManager.Infrastructure.Data.DatabaseContext;
 using System.Text;
 
 namespace ProjectManager.API.Configuration
 {
     public static class IdentityConfiguration
     {
-        public static IServiceCollection AddIdentityConfiguration (this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services, IConfiguration config)
         {
-            //IDENTITY EF SETTINGS
-            services.AddDbContext<ApplicationDbContext>(opts =>
-                opts.UseSqlServer(config.GetConnectionString("DefaultConnection"))
-            );
-
-            services.AddDefaultIdentity<ApplicationUser>(opts => 
+            services.AddDefaultIdentity<ApplicationUser>(opts =>
                 {
                     opts.Password.RequiredLength = 8;
                     opts.Password.RequireLowercase = false;
                     opts.Password.RequireUppercase = false;
                     opts.Password.RequireNonAlphanumeric = false;
                     opts.Password.RequireDigit = false;
-                }            
+                }
             ).AddRoles<IdentityRole>()
              .AddErrorDescriber<PortugueseIdentityMessages>()
              .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -63,7 +57,7 @@ namespace ProjectManager.API.Configuration
             return services;
         }
 
-        public static IApplicationBuilder UseIdentityConfiguration (this IApplicationBuilder app)
+        public static IApplicationBuilder UseIdentityConfiguration(this IApplicationBuilder app)
         {
             app.UseAuthentication();
             app.UseAuthorization();
