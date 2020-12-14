@@ -33,7 +33,7 @@ namespace ProjectManager.API.Controllers
 
             await repositoryWrapper.taskRepository.Create(newTask);
 
-            if (repositoryWrapper.Save() == 1)
+            if (repositoryWrapper.Save())
                 return Ok(newTask);
             else
                 return BadRequest();
