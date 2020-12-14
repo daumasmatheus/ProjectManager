@@ -18,7 +18,9 @@ namespace ProjectManager.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentityConfiguration(Configuration);
+            services.AddMainDbContextConfiguration(Configuration);
             services.AddApiConfiguration();
+            services.AddCIConfiguration();
             services.AddSwaggerConfiguration();
             services.AddMapperConfiguration();
         }
