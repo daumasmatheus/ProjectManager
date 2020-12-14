@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ProjectManager.API.ViewModels;
+using ProjectManager.API.DTOs;
 using ProjectManager.Core.BaseClasses;
 using ProjectManager.Core.Extensions;
 using ProjectManager.Core.Services.Interfaces;
@@ -31,7 +31,7 @@ namespace ProjectManager.API.Controllers
         /// <param name="userRegister">Dados do usuário para registro no banco de dados</param>
         /// <returns>Dados de autenticação e autorização (jwt token e claims) do usuário</returns>
         [HttpPost("register")]
-        public async Task<ActionResult> Register([FromBody]UserRegisterViewModel userRegister)
+        public async Task<ActionResult> Register([FromBody]UserRegisterDto userRegister)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
@@ -62,7 +62,7 @@ namespace ProjectManager.API.Controllers
         /// <param name="userLogin">Dados para o login do usuário</param>
         /// <returns>Dados de autenticação e autorização (jwt token e claims) do usuário</returns>
         [HttpPost("login")]
-        public async Task<ActionResult> Login(UserLoginViewModel userLogin)
+        public async Task<ActionResult> Login(UserLoginDto userLogin)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
@@ -84,7 +84,7 @@ namespace ProjectManager.API.Controllers
         }
 
         [HttpPost("external-auth")]
-        public async Task<ActionResult> ExternalAuth([FromBody]ExternalUserViewModel externalUser)
+        public async Task<ActionResult> ExternalAuth([FromBody]ExternalUserDto externalUser)
         {
             var user = _userManager.Users.Where(x => x.ExternalUserId == externalUser.ExternalUserId).FirstOrDefault();
 

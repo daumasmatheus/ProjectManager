@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectManager.API.ViewModels;
+using ProjectManager.API.DTOs;
 using ProjectManager.Core.BaseClasses;
 using ProjectManager.Infrastructure.Repository.Interfaces;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ namespace ProjectManager.API.Controllers
         }
 
         [HttpPost("PostNewTask")]
-        public async Task<ActionResult<TaskViewModel>> PostNewTask([FromBody] TaskViewModel task)
+        public async Task<ActionResult<TaskDto>> PostNewTask([FromBody] TaskDto task)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
