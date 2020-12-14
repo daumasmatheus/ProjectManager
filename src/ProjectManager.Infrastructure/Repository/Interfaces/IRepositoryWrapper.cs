@@ -3,6 +3,6 @@
     public interface IRepositoryWrapper
     {
         ITaskRepository taskRepository { get; }
-        int Save();
+        bool Save();
     }
 }

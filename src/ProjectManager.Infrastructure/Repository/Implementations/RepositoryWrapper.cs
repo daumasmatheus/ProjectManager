@@ -21,6 +21,6 @@ namespace ProjectManager.Infrastructure.Repository.Implementations
             }
         }        
 
-        public int Save() => applicationDbContext.SaveChanges();
+        public bool Save() => applicationDbContext.SaveChanges() > 0;
     }
 }
