@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.Core", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.API", "src\ProjectManager.API\ProjectManager.API.csproj", "{9084B3E6-D613-481E-BEE9-CE4215AD287A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManager.Infrastructure.Tests", "src\ProjectManager.Infrastructure.Tests\ProjectManager.Infrastructure.Tests.csproj", "{6BB5E7D5-CEF3-4E61-BE17-0D600E205F70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{9084B3E6-D613-481E-BEE9-CE4215AD287A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9084B3E6-D613-481E-BEE9-CE4215AD287A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9084B3E6-D613-481E-BEE9-CE4215AD287A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB5E7D5-CEF3-4E61-BE17-0D600E205F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB5E7D5-CEF3-4E61-BE17-0D600E205F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB5E7D5-CEF3-4E61-BE17-0D600E205F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB5E7D5-CEF3-4E61-BE17-0D600E205F70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C2E6705A-B348-4CA0-95DD-26CE283F5F49} = {73A69273-0970-4ADF-ADF3-7210C52A55B4}
 		{812DB8CF-34C2-49CB-B86A-3089A442DFC7} = {27BED4FA-C5E0-4CB3-A6C1-3D74659233B1}
+		{6BB5E7D5-CEF3-4E61-BE17-0D600E205F70} = {73A69273-0970-4ADF-ADF3-7210C52A55B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F80C3F7-C307-4503-83EF-92A3677AA0F2}
