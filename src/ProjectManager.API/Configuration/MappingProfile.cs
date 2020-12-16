@@ -23,6 +23,9 @@ namespace ProjectManager.API.Configuration
             CreateMap<UserTokenDto, UserToken>();
             CreateMap<UserClaimDto, UserClaim>();
             #endregion
+
+            CreateMap<TaskDto, Task>();
+            CreateMap<Task, TaskDto>();
         }
     }    
 }
