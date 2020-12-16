@@ -26,6 +26,16 @@ namespace ProjectManager.API.Configuration
 
             CreateMap<TaskDto, Task>();
             CreateMap<Task, TaskDto>();
+
+            CreateMap<ProjectDto, Project>();
+            CreateMap<Project, ProjectDto>();
+
+            CreateMap<PersonDto, Person>();
+            CreateMap<Person, PersonDto>();
+
+            CreateMap<CommentDto, Comment>();
+            CreateMap<Comment, CommentDto>();
+
         }
     }    
 }
