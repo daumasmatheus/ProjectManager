@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using ProjectManager.API.DTOs;
 using ProjectManager.Core.BaseClasses;
 using ProjectManager.Infrastructure.Repository.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectManager.API.Controllers
@@ -11,9 +13,12 @@ namespace ProjectManager.API.Controllers
     public class TaskController : BaseController
     {
         private IRepositoryWrapper repositoryWrapper;
-        public TaskController(IRepositoryWrapper _repositoryWrapper)
+        private readonly IMapper mapper;
+
+        public TaskController(IRepositoryWrapper _repositoryWrapper, IMapper _mapper)
         {
             repositoryWrapper = _repositoryWrapper;
+            mapper = _mapper;
         }
 
         [HttpPost("PostNewTask")]
@@ -37,6 +42,15 @@ namespace ProjectManager.API.Controllers
                 return Ok(newTask);
             else
                 return BadRequest();
+        }
+
+        [HttpGet("GetTasks")]
+        public async Task<IActionResult> GetTasks()
+        {
+            var result = await repositoryWrapper.taskRepository.GetAll();
+            var tasks = mapper.Map<IEnumerable<TaskDto>>(result);
+
+            return Ok(tasks);
         }
     }
 }
