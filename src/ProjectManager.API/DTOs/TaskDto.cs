@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjectManager.API.DTOs
 {
@@ -18,10 +17,8 @@ namespace ProjectManager.API.DTOs
         public DateTime? ConclusionDate { get; set; }
         public DateTime? ConcludedDate { get; set; }
 
-        //public Person Person { get; set; }
-        //public Project Project { get; set; }
-        //public Status Status { get; set; }
-        //public Priority Priority { get; set; }
-        //public ICollection<Comment> Comments { get; set; }
+        public PersonDto Person { get; set; }
+        public ProjectDto Project { get; set; }        
+        public ICollection<CommentDto> Comments { get; set; }
     }
 }
