@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,9 +21,11 @@ namespace ProjectManager.API
             services.AddIdentityConfiguration(Configuration);
             services.AddMainDbContextConfiguration(Configuration);
             services.AddApiConfiguration();
+
+            services.AddMapperConfiguration();
+
             services.AddCIConfiguration();
             services.AddSwaggerConfiguration();
-            services.AddMapperConfiguration();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
